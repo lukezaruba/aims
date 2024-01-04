@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aims"
+version = "0.1.0"
+description = "Python interface for working with Map Service data from ArcGIS REST APIs"
+readme = "README.md"
+authors = [{ name = "Luke Zaruba", email = "lukeazaruba@gmail.com" }]
+license = { file = "LICENSE" }
+requires-python = '>=3.10'
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering"
+]
+keywords = ["GIS", "geospatial", "spatialdatascience", "arcgis"]
+dependencies = [
+    "click",
+    "geopandas",
+    "requests"
+]
+
+[project.scripts]
+aims = "aims.cli:cli"
+
+[project.urls]
+Repository = "https://github.com/lukezaruba/aims"
+Issues = "https://github.com/lukezaruba/aims/issues"
+
+[project.optional-dependencies]
+dev = ["black", "flake8", "isort", "pre_commit"]
