@@ -8,11 +8,13 @@ AIMS, or the ArcGIS Interface for Map Services, seeks to provide a simple tool t
 
 ## Python
 
-To install `aims` from PyPI, use the following command:
+To install `aims`, use the following command:
 
-```python
-pip install aims
+```bash
+pip install git+https://github.com/lukezaruba/aims.git
 ```
+
+Currently, it is only available by installing via pip from GitHub.
 
 With the Python package, users are able to access the data and metadata in a number of ways, such as:
 
