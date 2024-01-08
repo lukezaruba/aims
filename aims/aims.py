@@ -32,6 +32,8 @@ from urllib.parse import urlparse
 
 from geopandas import GeoDataFrame
 from requests import get
+from tqdm import tqdm
+from tqdm.contrib.concurrent import thread_map
 
 
 class AIMS:
@@ -75,15 +77,19 @@ class AIMS:
 
         # Make requests concurrently or not
         if concurrent:
-            with ThreadPoolExecutor() as executor:
-                self._raw_responses = list(
-                    executor.map(self._make_single_request, self._request_urls)
-                )
+            # Removing ThreadPoolExecutor code & adding tqdm implementation/wrapper
+            # with ThreadPoolExecutor() as executor:
+            #     self._raw_responses = list(
+            #         executor.map(self._make_single_request, tqdm(self._request_urls))
+            #     )
+            self._raw_responses = thread_map(
+                self._make_single_request, self._request_urls
+            )
 
         else:
             # Using normal map
             self._raw_responses = list(
-                map(self._make_single_request, self._request_urls)
+                map(self._make_single_request, tqdm(self._request_urls))
             )
 
         # With all data, combine
